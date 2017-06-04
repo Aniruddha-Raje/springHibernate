@@ -1,0 +1,13 @@
+com/blcl/domains/PersonsDomain.class
+com/blcl/domains/AddressDomain.class
+com/blcl/dtos/ContactDto.class
+com/blcl/dtos/PersonsDto.class
+com/blcl/dtos/Form.class
+com/blcl/domains/ContactDomain.class
+com/blcl/domains/StateDomain.class
+com/blcl/configurations/DBConnection.class
+com/blcl/mapper/Mapper.class
+com/blcl/mapper/IMapper.class
+com/blcl/utils/Constants.class
+com/blcl/controllers/DemoController.class
+com/blcl/domains/CityDomain.class
