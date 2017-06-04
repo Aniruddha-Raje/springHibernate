@@ -21,7 +21,6 @@ public class DaoImpl implements IDao {
 	public List<PersonsDomain> fetchDatafromDB() {
 		
 		List<PersonsDomain> personsDomain = entitymanager.createQuery("FROM PersonsDomain", PersonsDomain.class).getResultList();
-		//Set<ContactDomain> s = personsDomain.get(0).getContactDomain();
 		
 		return personsDomain;
 	}

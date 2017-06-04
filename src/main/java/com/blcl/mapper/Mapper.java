@@ -15,31 +15,35 @@ public class Mapper implements IMapper{
 
 	@Override
 	public List<PersonsDto> mapDto(List<PersonsDomain> domains) {
-		PersonsDto p = null;
-		List<PersonsDto> ps = new ArrayList<PersonsDto>();
+		PersonsDto personsDto = new PersonsDto();
+		List<PersonsDto> personsDtoList = new ArrayList<PersonsDto>();
 		
-		ContactDto c = null;
-		List<ContactDto> cs = new ArrayList<ContactDto>();
+		ContactDto contactDto = new ContactDto();
+		List<ContactDto> contactDtoList = new ArrayList<ContactDto>();
 		
 		for(PersonsDomain domain: domains){
-			p =  new PersonsDto();
-			p.setFirstName(domain.getFirstName());
-			p.setAge(domain.getAge());
-			p.setDateOfBirth(domain.getDateOfBirth());
-			p.setCity(domain.getAddressDomain().getCityDomain().getCityName());
-			p.setState(domain.getAddressDomain().getStateDomain().getStateName());
+			personsDto =  new PersonsDto();
 			
+			personsDto.setFirstName(domain.getFirstName());
+			personsDto.setAge(domain.getAge());
+			personsDto.setDateOfBirth(domain.getDateOfBirth());
+			personsDto.setCity(domain.getAddressDomain().getCityDomain().getCityName());
+			personsDto.setState(domain.getAddressDomain().getStateDomain().getStateName());
+			
+			contactDtoList = new ArrayList<ContactDto>();
 			for(ContactDomain contact: domain.getContactDomain()){
-				c = new ContactDto();
-				c.setContactNumber(contact.getContactNumber());
-				c.setDescription(contact.getDescription());
-				cs.add(c);
+				contactDto = new ContactDto();
+				
+				contactDto.setContactNumber(contact.getContactNumber());
+				contactDto.setDescription(contact.getDescription());
+				
+				contactDtoList.add(contactDto);
 			}
-			p.setContact(cs);
+			personsDto.setContact(contactDtoList);
 			
-			ps.add(p);
+			personsDtoList.add(personsDto);
 		}
 		
-		return ps;
+		return personsDtoList;
 	}
 }

@@ -1,9 +1,9 @@
 package com.blcl.domains;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -21,7 +21,6 @@ import org.springframework.beans.factory.annotation.Configurable;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-
 /*
 @Entity - marks this class as an entity bean
 @Table - 
@@ -36,6 +35,8 @@ Attributes - name , catalogue, schema
 @Configurable
 @Table(name = "Persons")
 public class PersonsDomain implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -52,12 +53,12 @@ public class PersonsDomain implements Serializable {
 	private Date dateOfBirth;
 
 	@OneToOne
-	@JoinColumn(name="Address")
+	@JoinColumn(name = "Address")
 	private AddressDomain addressDomain;
 
 	@OneToMany(mappedBy = "PersonID", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonBackReference
-	private Set<ContactDomain> contactDomain = new HashSet<ContactDomain>();
+	private List<ContactDomain> contactDomain = new ArrayList<ContactDomain>();
 
 	public int getPersonId() {
 		return personId;
@@ -99,11 +100,11 @@ public class PersonsDomain implements Serializable {
 		this.addressDomain = addressDomain;
 	}
 
-	public Set<ContactDomain> getContactDomain() {
+	public List<ContactDomain> getContactDomain() {
 		return contactDomain;
 	}
 
-	public void setContactDomain(Set<ContactDomain> contactDomain) {
+	public void setContactDomain(List<ContactDomain> contactDomain) {
 		this.contactDomain = contactDomain;
 	}
 
