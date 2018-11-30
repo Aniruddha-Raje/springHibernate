@@ -1,0 +1,89 @@
+Annotation	|Package							|Source
+@Resource	|javax.annotation					|Java
+@Inject		|javax.inject						|Java
+@Qualifier	|javax.inject						|Java
+@Autowired	|org.springframework.bean.factory	|Spring
+
+=========================================================
+
+@Configuration
+@EnableTransactionManagement
+BasicDataSource
+-> Hibernate Config class
+
+=========================================================
+
+@SpringBootApplication
+@ComponentScan(basePackages = "com.blcl")
+->Application class
+
+=========================================================
+
+@RequestMapping("/api")
+@RestController
+@RequestMapping(value = "/greeting", method = RequestMethod.GET)
+@Autowired
+-> Controller class
+
+=========================================================
+
+@Service
+@Override
+-> Service class
+
+=========================================================
+
+@Repository
+@PersistenceContext
+-> Dao class
+
+=========================================================
+
+@Component
+-> Mapper class
+
+=========================================================
+
+@Entity
+@Configurable
+@Table(name = "Persons")
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)
+@Column(name = "PersonID")
+-> Model class
+
+=========================================================
+
+One - to - One
+User has One role
+@OneToOne
+@JoinColumn(name = "roleId")
+private RoleDomain roleId;
+-> User Model
+
+=========================================================
+
+Many - to - One
+One Mission is created by One User
+@ManyToOne
+@JoinColumn(referencedColumnName = "id", name = "createdBy")
+private UserDomain createdBy;
+
+=========================================================
+
+One - to - Many
+Main class for many to many
+@OneToMany(mappedBy = "mission", cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+@JsonBackReference
+private List<MissionCircuitsDomain> missionCircuitsDomain = new ArrayList<>();
+
+==========================================================
+
+Many - to - One
+Mapping class
+@ManyToOne
+@JoinColumn(name = "mission", nullable = true)
+@JsonBackReference
+private MissionDomain mission;
+
+==========================================================
